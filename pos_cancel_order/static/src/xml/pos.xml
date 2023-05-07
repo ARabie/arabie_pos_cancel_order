@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+    <t t-name="TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('header-row')]//div[@name='delete']" position="before">
+            <div class="col very-narrow" name="cancel"></div>
+        </xpath>
+        <xpath expr="//div[hasclass('order-row')]//div[@name='delete']" position="before">
+            <div t-if="!shouldHideDeleteButton(order)" class="col very-narrow cancel-button" name="cancel" t-on-click.stop="() => this.trigger('cancel-order', order)">
+                <i class="fa fa-times" aria-hidden="true"/><t t-if="env.isMobile"> Cancel</t>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
